@@ -1,0 +1,149 @@
+=head1 ActivePerl 5.24 Change Log
+
+For the latest information on ActivePerl, please see:
+
+    http://www.ActiveState.com/ActivePerl/
+
+=head2 Build 2402, January 2017
+
+Build 2402 is identical to build 2401 with the exception of the core, which
+has been updated to 5.24.1. For the non-core changes, refer to the section on
+build 2401 below.
+
+I<Bug Fixes and Changes since build 2401>
+
+=over 3
+
+=item *
+
+The following security vulnerabilities have been addressed:
+
+=over
+
+=item CVE-2016-1238
+
+The tools and many modules supplied in core no longer search the default current
+directory entry in @INC for optional modules. For example, Storable will remove
+the final "." from @INC before trying to load Log::Agent.
+
+This prevents an attacker injecting an optional module into a process run by another
+user where the current directory is writable by the attacker, e.g. the /tmp directory.
+
+In most cases this removal should not cause problems, but difficulties were encountered
+with base, which treats every module name supplied as optional. These difficulties have
+not yet been resolved, so for this release there are no changes to base. The Perl team
+hopes to have a fix for base in Perl 5.24.2.
+
+Please see L<perldelta> for more information on how to protect your own code from this
+attack.
+
+=item CVE-2016-6185
+
+XSLoader contained a security hole in which binary files could be loaded from
+a path outside of @INC.
+
+=back
+
+=item *
+
+Significant changes that have occurred in the Perl 5.24.1 release are
+documented in L<perldelta>.
+
+=item *
+
+Most bundled modules have been updated to their latest released
+version from CPAN.  Use the C<ppm query> command to check the exact
+version included in this release.
+
+=back
+
+=head2 Build 2401, January 2017
+
+Build 2401 is a mid-cycle release with updated libraries and modules only.
+It contains the same core version as the previous build, 5.24.0.
+
+I<Bug Fixes and Changes since build 2400>
+
+=over 3
+
+=item *
+
+OpenSSL has been upgraded to version 1.1.0c. For more information on
+this version, visit https://www.openssl.org/news/openssl-1.1.0-notes.html
+
+=over
+
+=item IO-Socket-SSL 2.40 (was 2.27)
+
+=item Net-SSLeay 1.78 (was 1.74)
+
+=back
+
+=item *
+
+GD's supporting libraries have been updated:
+
+=over
+
+=item libpng updated to 1.6.26 (was 1.6.21)
+
+=item fontconfig updated to 2.12.1 (was 2.11.95)
+
+=item freetype2 updated to 2.6.5 (was 2.6.3)
+
+=item libgd updated to 2.2.3 (was 2.1.1)
+
+=back
+
+=item *
+
+The PostgreSQL client library used by DBD-Pg has been upgraded to 9.6.1 in order to
+support OpenSSL 1.1.0.
+
+=item *
+
+Most bundled modules have been updated to their latest released
+version from CPAN.  Use the C<ppm query> command to check the exact
+version included in this release.
+
+=item *
+
+The installer for ActivePerl on Windows is now signed and should be easier to install.
+
+=item *
+
+The Mac version of ActivePerl is now distributed as a signed .pkg installer
+instead of a .dmg bundle and should be easier to install.
+
+=back
+
+=head2 Build 2400, June 2016
+
+I<What's new in the 2400 Series>
+
+=over 3
+
+=item *
+
+This build corresponds to the Perl 5.24.0 source code release.
+
+=item *
+
+The 2400 series builds of ActivePerl are not binary compatible with
+builds in the 2200 or earlier series.  Any extensions built using binaries
+from the ActivePerl 2200 or earlier series will need to be recompiled.
+Note especially that this applies to PPM packages that may have been
+built for earlier series of ActivePerl.
+
+=item *
+
+Significant changes that have occurred since the 5.22 release are documented in
+L<perl5240delta>.
+
+=item *
+
+Most bundled distributions have been updated to their latest released
+version from CPAN.  Use the C<ppm list> command to check the exact
+version of all modules included in this release.
+
+=back
